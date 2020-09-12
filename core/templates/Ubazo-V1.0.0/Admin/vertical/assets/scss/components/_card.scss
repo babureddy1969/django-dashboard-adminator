@@ -1,0 +1,18 @@
+// 
+// _card.scss
+// 
+
+.card {
+    margin-bottom: $grid-gutter-width;
+    box-shadow: $box-shadow;
+}
+
+.card-title {
+    font-size: 17px;
+    position: relative;
+}
+
+.card-subtitle {
+    color: $gray-600;
+    font-size: 14px;
+}

@@ -1,10 +1,70 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django.db import models
-from django.contrib.auth.models import User
-
+from django.utils.timezone import now 
 # Create your models here.
+class Invoice(models.Model):
+    company_code = models.IntegerField()
+    vendor = models.IntegerField()
+    clearing_date = models.DateField()
+    clearing_document = models.IntegerField(default=0) 
+    assignment = models.CharField(max_length=30)
+    fiscal_year = models.IntegerField() 
+    document_number = models.IntegerField() 
+    line_item = models.IntegerField() 
+    posting_date = models.DateField() 
+    document_date = models.DateField() 
+    entry_date = models.DateField() 
+    currency = models.CharField(max_length=3)    
+    reference = models.CharField(max_length=30)
+    document_type = models.CharField(max_length=2) 
+    posting_period = models.IntegerField()
+    posting_key = models.CharField(max_length=2)
+    debit_credit_ind = models.CharField(max_length=1)
+    tax_code = models.CharField(max_length=2)
+    trade_code = models.CharField(max_length=1,null=True)#
+    amount_in_lc = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    baseline_payment_dte = models.DateField() 
+    terms_of_payment = models.CharField(max_length=10) 
+    payment_method = models.CharField(max_length=1) 
+    invoice_reference = models.CharField(max_length=30,null=True)
+    reverse_clearing = models.CharField(max_length=30, null=True)
+    run_date = models.DateField() 
+    run_id = models.CharField(max_length=4, null=True) 
+    value_date = models.DateField() 
+    check = models.CharField(max_length=10, null=True)
+    paid_check = models.CharField(max_length=10, null=True) 
+    check_encashment_date = models.DateField() 
+    check_void_reason_code = models.CharField(max_length=10, null=True) 
+    voided_check_date = models.DateField() 
+    reverse_clearing = models.CharField(max_length=10, null=True) 
+    create_date= models.CharField(max_length=20,null=True)
+    update_date= models.CharField(max_length=20, null  =True)
 
+class Vendor(models.Model):
+    vendor = models.IntegerField()
+    country = models.CharField(max_length=2) 
+    Name_1    = models.CharField(max_length=35) 
+    Name_2    = models.CharField(max_length=35) 
+    City	 = models.CharField(max_length=35) 
+    District = models.CharField(max_length=35)
+    PO_Box	= models.CharField(max_length=10)
+    PO_Box_Postal_Code= models.CharField(max_length=10)
+    Postal_Code	= models.CharField(max_length=10)
+    Region = models.CharField(max_length=10)
+    Search_term = models.CharField(max_length=10)
+    Street = models.CharField(max_length=35)
+    Address = models.CharField(max_length=10)
+    City= models.CharField(max_length=35)
+    Created_on= models.CharField(max_length=8)
+    Created_by= models.CharField(max_length=12)
+    Account_group= models.CharField(max_length=4)
+    Language_Key= models.CharField(max_length=2)
+    Tax_Number_1= models.CharField(max_length=16)
+    Tax_Number_2= models.CharField(max_length=16)
+    Telephone_1= models.CharField(max_length=15)
+    Telephone_2= models.CharField(max_length=15)
+    Fax_Number= models.CharField(max_length=31)
+    Tax_Jurisdiction= models.CharField(max_length=35)
+    Email=  models.CharField(max_length=241)
+    create_date= models.CharField(max_length=20,null=True)
+    update_date= models.CharField(max_length=20, null  =True)
