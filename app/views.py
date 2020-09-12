@@ -83,7 +83,7 @@ def loadInvoice(request):
                 v = models.Vendor.objects.all().filter(vendor=record['Vendor'])  
                 print ( v.count(),v[0].vendor,v[0].Name_1,v[0].Email)
                 if v.count()>0 and v[0].vendor and v[0].Email:
-                    util.sendmail2({"emails":[v[0].Email],"clearing_date":record["Clearing_date"],"amount":record["Amount"],"supplier":v[0].Name_1  })#                
+                    util.sendmail2({"emails":[v[0].Email],"clearing_date":record["Clearing_date"],"amount":record["Amount"],"supplier":v[0].Name_1,"currency":record["currency"].upper()  })#                
                 # break
             except Exception as e:
                 print(e)
