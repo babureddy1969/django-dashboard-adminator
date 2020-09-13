@@ -53,36 +53,36 @@
                     </button>
 
                     <div class="dropdown d-none d-sm-inline-block ml-2">
-                        <button type="button" class="btn header-item noti-icon waves-effect"
+                        <!-- <button type="button" class="btn header-item noti-icon waves-effect"
                             id="page-header-search-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <i class="mdi mdi-magnify"></i>
-                        </button>
+                        </button> -->
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                             aria-labelledby="page-header-search-dropdown">
 
-                            <form class="p-3">
-                                <div class="form-group m-0">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search ..."
-                                            aria-label="Recipient's username">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit"><i
-                                                    class="mdi mdi-magnify"></i></button>
+                                <!-- <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..."
+                                                aria-label="Recipient's username">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit"><i
+                                                        class="mdi mdi-magnify"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form> -->
                         </div>
                     </div>
 
                     <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                        <!-- <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="" src="../static/assets/images/flags/us.jpg" alt="Header Language" height="16">
                             <span class="d-none d-sm-inline-block ml-1">English</span>
                             <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
-                        </button>
+                        </button> -->
                         <div class="dropdown-menu dropdown-menu-right">
 
                             <!-- item-->
@@ -223,9 +223,9 @@
         </header>
 
         <!-- ========== Left Sidebar Start ========== -->
-        <div class="vertical-menu">
+        <div class="vertical-menu" style="width:125px">
 
-            <div data-simplebar class="h-100">
+            <div data-simplebar class="h-100" >
 
                 <div class="navbar-brand-box">
                     <a href="/" class="logo">
@@ -237,10 +237,10 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title">Menu</li>
+                        <!-- <li class="menu-title">Menu</li> -->
 
                         <li>
-                            <a href="/remittance" class="waves-effect"><i class='feather-home'></i><span class="badge badge-pill badge-success float-right">7</span><span>Remittance</span></a>
+                            <a href="/remittance" class="waves-effect"></i><span class="badge badge-pill badge-success float-right"></span><span>Remittance</span></a>
                         </li>
 
                     </ul>
@@ -257,18 +257,31 @@
             <div class="page-content">
                 <div class="container-fluid">
                     <div class="row">
-
-                        <div class="col-14">
-
-                        <div class="col-xl-4">
-                            <div class="form-group mb-2">
-                                <label>Date</label>
-                                <input style="width:200px" type="text" class="form-control date" id="singledaterange" data-toggle="daterangepicker" data-cancel-class="btn-warning">
+                            <div class="form-group mb-4 ">
+                                <label>Clearing Date*</label>
+                                <input style="width:200px" type="text" class="form-control date" id="clearing_date" data-toggle="daterangepicker" data-cancel-class="btn-warning">
                             </div>
-    
-                        </div>
-                        </div>
-                        <div class="form-group mb-4">
+
+                                <div class="form-group mb-4">
+                                    <label>Company ID*</label>
+                                    <input style="width:200px" type="text" maxlength="4" class="form-control" id="companyid" >
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label>Vendor ID*</label>
+                                    <!-- <input style="width:200px" type="text" maxlength="10"  class="form-control" id="vendorid" > -->
+                                    <input style="width:200px" type="text" maxlength="10"  class="form-control" id="vendorid" >
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label>Email ID*</label>
+                                    <input style="width:200px" type="email" class="form-control" id="emailid" >
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input style="background:#346ee0;color:wheat;margin-top:30px;width:100px" onclick="preview();" type="button" class="form-control" id="submit" value="Submit">
+                                </div>
+                                <div class="form-group mb-4">
+                                    <input style="background:rgb(61, 184, 61);color:wheat;margin-top:30px;width:100px" onclick="sendmail();" type="button" class="form-control" id="sendemail" value="Send Email">
+                                </div>
+                                <div class="form-group mb-4 d-none">
                                         <table id="vendor-datatable" style="width:100%" >
                                         <thead>
                                             <tr>
@@ -324,11 +337,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            2020 © Ubazo.
+                            2020 © Smartbee.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-right d-none d-sm-block">
-                                Design & Develop by Myra
+                                Designed & Developed by Business Solutions Consultants
                             </div>
                         </div>
                     </div>
@@ -384,13 +397,47 @@
     <!-- App js -->
     <script src="../static/assets/js/theme.js"></script>
     <script>
+function preview(){
+    // alert("preview");
+    var table = $('#invoice-datatable').DataTable().destroy();
+    var vendorid =$('#vendorid').val() ;
+    var companyid = $('#companyid').val() ;
+    var clearing_date_range = $('#clearing_date').val() ;
+    // alert(vendorid,companyid,clearing_date_range);
+    var table = $('#invoice-datatable').DataTable({
+        lengthChange: false,
+        striped:true,
+        dom:'Bfrtip',
+        ajax: '/invoice/?vendorid='+vendorid+'&companyid='+companyid + "&clearing_date_range="+clearing_date_range,      
+            "columns": [
+                { data: 'company_code' },
+                { data: 'vendor' },
+                { data: 'clearing_date' },
+                { data: 'clearing_document' },
+                { data: 'assignment' },
+                { data: 'fiscal_year' },
+                { data: 'document_number' },           
+            ],     
+        buttons: ['copy', 'csv', 'pdf'],
+        "language": {
+            "paginate": {
+                "previous": "<i class='mdi mdi-chevron-left'>",
+                "next": "<i class='mdi mdi-chevron-right'>"
+            }
+        },
+        "drawCallback": function () {
+            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+        }
+    });
 
+}
+
+
+function sendmail(){
+    alert("sendmail");
+}
 $(document).ready(function() {
-    // var table = $('#vendor-datatable').DataTable( {
-    //     // rowReorder: true,
-    //     scrollY: 300,
-    //     paging: false
-    // } );
+
 } );
 </script>                                            
 </body>

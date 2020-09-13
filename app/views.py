@@ -18,6 +18,7 @@ from django.http.response import JsonResponse
 from django.db import IntegrityError
 from api import serializers
 from . import static_values
+from rest_framework.decorators import api_view
 @login_required(login_url="/login/")
 def remittance(request):
     v = models.Vendor.objects.all().order_by('vendor')
@@ -159,9 +160,34 @@ def vendors(request):
     for d in v:
         data += [d]
     return JsonResponse({'data':data,'status':200})
+@api_view(['GET'])
 def invoices(request):
-    v = models.Invoice.objects.all().values() 
-    print(v)
+    vendorid=request.GET.get('vendorid',0)
+    companyid=request.GET.get('companyid',0)
+    clearing_date_range=request.GET.get('clearing_date_range',0)
+    print(companyid,vendorid,clearing_date_range)
+    v=None
+    
+    if companyid and vendorid and clearing_date_range:
+        d = clearing_date_range.split('-')
+        from_date = d[0].strip().split('/')
+        from_date = from_date[2]+'-'+from_date[0]+'-'+from_date[1]
+        to_date = d[1].strip().split('/')
+        to_date = to_date[2]+'-'+to_date[0]+'-'+to_date[1]
+        print(from_date,to_date)
+        v = models.Invoice.objects.all().filter(company_code=companyid,vendor=vendorid).values() 
+        o=[]
+        for x in v:
+            cd = x['clearing_date'].split('-')
+            cd1 = cd[2]+'-'+cd[0]+'-'+cd[1]
+            if from_date == to_date and cd1 == from_date :
+                    o += [x]
+            elif cd1 >= from_date and cd1<=to_date:
+                    o += [x]
+        return JsonResponse({'count':o.count(),'data':o,'status':200})
+    else:   
+        v = models.Invoice.objects.all().values() 
+    # print(v)
     data=[]
     for d in v:
         data += [d]
