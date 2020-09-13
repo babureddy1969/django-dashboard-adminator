@@ -17,4 +17,7 @@ urlpatterns = [
     path('loadinvoice/', views.loadInvoice),
     path('loadvendor/', views.loadVendor),
     path('remittance/', views.remittance),
+    path('vendor/', views.vendors),
+    path('invoice/', views.invoices ),
+    path('email/', views.sendEmailBatchJob ),
 ]

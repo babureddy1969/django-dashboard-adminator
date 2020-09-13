@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from . import models
+from app import models
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -16,4 +16,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class InvoiceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Invoice
-        fields = []
+        fields = ['__all__']

@@ -12,77 +12,41 @@ $(document).ready(function() {
             "paging": false,
             "info": false,
             "select":true  ,
-    
+            "scrollY":"200px",
+            "dom": 'Pfrtip',
+            ajax: '/vendor/',      
+            "columns": [
+                { data: 'vendor' },
+                { data: 'Name_1' },
+                { data: 'City' },
+                { data: 'Postal_Code' },
+                { data: 'Region' },
+                { data: 'Street' },
+                { data: 'Email' },           
+            ]     
     });
-
+    var table = $('#vendor-datatable').DataTable();
+     
+    $('#vendor-datatable tbody').on('click', 'tr', function () {
+        var d = table.row( this ).row().data();
+        alert( d );
+        console.log(d);
+    } );
     //Buttons examples
-    var table = $('#datatable-buttons').DataTable({
+    var table = $('#invoice-datatable').DataTable({
         lengthChange: false,
+        striped:true,
+        ajax: '/invoice/',      
+            "columns": [
+                { data: 'company_code' },
+                { data: 'vendor' },
+                { data: 'clearing_date' },
+                { data: 'clearing_document' },
+                { data: 'assignment' },
+                { data: 'fiscal_year' },
+                { data: 'document_number' },           
+            ],     
         buttons: ['copy', 'csv', 'pdf'],
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'>",
-                "next": "<i class='mdi mdi-chevron-right'>"
-            }
-        },
-        "drawCallback": function () {
-            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        }
-    });
-
-    // Multi Selection Datatable
-    $('#selection-datatable').DataTable({
-        select: {
-            style: 'multi'
-        },
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'>",
-                "next": "<i class='mdi mdi-chevron-right'>"
-            }
-        },
-        "drawCallback": function () {
-            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        }
-    });
-
-    // Key Datatable
-    $('#key-datatable').DataTable({
-        keys: true,
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'>",
-                "next": "<i class='mdi mdi-chevron-right'>"
-            }
-        },
-        "drawCallback": function () {
-            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        }
-    });
-
-    table.buttons().container()
-            .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
-
-    // Complex headers with column visibility Datatable
-    $('#complex-header-datatable').DataTable({
-        "language": {
-            "paginate": {
-                "previous": "<i class='mdi mdi-chevron-left'>",
-                "next": "<i class='mdi mdi-chevron-right'>"
-            }
-        },
-        "drawCallback": function () {
-            $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
-        },
-        "columnDefs": [ {
-            "visible": false,
-            "targets": -1
-        } ]
-    });
-
-    // State Datatable
-    $('#state-saving-datatable').DataTable({
-        stateSave: true,
         "language": {
             "paginate": {
                 "previous": "<i class='mdi mdi-chevron-left'>",
