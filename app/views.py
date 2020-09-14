@@ -184,7 +184,7 @@ def invoices(request):
                     o += [x]
             elif cd1 >= from_date and cd1<=to_date:
                     o += [x]
-        return JsonResponse({'count':o.count(),'data':o,'status':200})
+        return JsonResponse({'count':len(o),'data':o,'status':200})
     else:   
         v = models.Invoice.objects.all().values() 
     # print(v)
